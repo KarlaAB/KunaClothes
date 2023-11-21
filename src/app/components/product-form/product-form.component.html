@@ -1,0 +1,140 @@
+<body>
+    <app-global-navbar [userID]="user.id"></app-global-navbar>
+
+    <div class="form">
+        
+        <div class="heading">
+            <h1>Agregar producto a <span>{{shopname}}</span> </h1>
+        </div>
+
+        <div class="linea"></div>
+
+        <div class="content">
+            <div class="formProduct">
+                <div class="form-content">
+                    <form [formGroup]="myForm" autocomplete="off" color="secondary">
+        
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Nombre del producto</mat-label>
+                            <input matInput formControlName="name" placeholder="Nombre del producto">
+                            <mat-error *ngIf="name.invalid">{{Errorname()}}</mat-error>
+                        </mat-form-field>
+        
+                        <div class="model3">
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Cantidad</mat-label>
+                                <input matInput formControlName="quantity" placeholder="Cantidad">
+                                <mat-error *ngIf="quantity.invalid">{{ErrorQuantity()}}</mat-error>
+                            </mat-form-field>
+        
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Precio</mat-label>
+                                <input matInput formControlName="price" placeholder="Precio">
+                                <mat-error *ngIf="price.invalid">{{ErrorPrice()}}</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance = "legacy">
+                                <mat-label>Tipo de precio</mat-label>
+                                <mat-select formControlName = "pricetype">
+                                    <mat-option *ngFor="let pricetype of pricetypes" [value]="pricetype.name">
+                                        {{pricetype.name}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="pricetype.invalid">{{ErrorPricetype()}}</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Marca</mat-label>
+                            <input matInput formControlName="brand" placeholder="Marca">
+                            <mat-error *ngIf="brand.invalid">{{ErrorBrand()}}</mat-error>
+                        </mat-form-field> <br>
+
+                        <div class="model2">
+                            <mat-form-field appearance = "legacy">
+                                <mat-label>Género</mat-label>
+                                <mat-select formControlName = "gender">
+                                    <mat-option *ngFor="let gender of genders" [value]="gender.name">
+                                        {{gender.name}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="gender.invalid">{{ErrorGender()}}</mat-error>
+                            </mat-form-field>
+                    
+                            <mat-form-field appearance = "legacy">
+                                <mat-label>Tipo de prenda</mat-label>
+                                <mat-select formControlName = "type">
+                                    <mat-option *ngFor="let type of types" [value]="type.name">
+                                        {{type.name}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="type.invalid">{{ErrorType()}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                
+                        <div class="model2">
+                            <mat-form-field appearance = "legacy">
+                                <mat-label>Material</mat-label>
+                                <mat-select formControlName = "material">
+                                    <mat-option *ngFor="let material of materials" [value]="material.name">
+                                        {{material.name}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="material.invalid">{{ErrorMaterial()}}</mat-error>
+                            </mat-form-field>
+                    
+                            <mat-form-field appearance = "legacy">
+                                <mat-label>Talla</mat-label>
+                                <mat-select formControlName = "size">
+                                    <mat-option *ngFor="let size of sizes" [value]="size.name">
+                                        {{size.name}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="size.invalid">{{ErrorSize()}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                
+                        <div class="model2">
+                            <mat-form-field appearance = "legacy">
+                                <mat-label>Temporada</mat-label>
+                                <mat-select formControlName = "season">
+                                    <mat-option *ngFor="let season of seasons" [value]="season.name">
+                                        {{season.name}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="season.invalid">{{ErrorSeason()}}</mat-error>
+                            </mat-form-field>
+                            
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Año</mat-label>
+                                <input matInput formControlName="year" placeholder="Año">
+                                <mat-error *ngIf="year.invalid">{{ErrorYear()}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                </div>
+        
+                <div class="actions">
+                    <div class="save">
+                        <button *ngIf="!verifyProduct()" mat-raised-button (click)="saveProduct()" >Agregar producto</button>
+                        <button *ngIf="verifyProduct()" mat-raised-button (click)="saveProduct()" >Guardar cambios</button>
+                    </div>
+                    <div class="cancel" *ngIf="shopfound">
+                        <button mat-raised-button (click)="back()" >Cancelar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="image">
+                <button mat-raised-button class="contenedor-btn-file">
+                    <i class="fas fa-file"></i>
+                    Agregar Imagen
+                    <label for="btn-file"></label>
+                    <input (change)="capturefile($event)" type="file" id="btn-file">
+                </button>
+                <div *ngIf="preview" class="preview">
+                    <img [src]="preview" alt="">
+                </div>
+            </div>  
+        </div>
+    </div>
+
+</body>

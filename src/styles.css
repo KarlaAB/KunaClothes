@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root{
+    --poppinsfont: 'Poppins', sans-serif;
+    --principal: #5D4037 ;
+    --principallight: #D7CCC8;
+    --superlight: #FFAB91;
+    --wall: #A1887F;
+    --sub: #4E342E;
+
+
+}
+html, body { height: 100%; background-color:white;}
+body { margin: 0; font-family: sans-serif; }
